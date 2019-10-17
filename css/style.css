@@ -1,9 +1,9 @@
-@import "./bootstrap-reboot.min.css";
-@import "./bootstrap-grid.min.css";
-@import "./_font.css";
-@import "./_form.css";
-@import "./_placeholder.css";
-@import "./_tooltip.css";
+@import "/bootstrap-reboot.min.css";
+@import "/bootstrap-grid.min.css";
+@import "/_font.css";
+@import "/_form.css";
+@import "/_placeholder.css";
+@import "/_tooltip.css";
 
 /* RESET CSS*/
 *{
