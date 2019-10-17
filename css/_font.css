@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Montserrat Medium";
+  src: url("../fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Myriad';
+  src: url("../fonts/Myriad/Myriad-Pro_31655.ttf") format("truetype");
+}
+
+.montserrat {
+  font-family: "Montserrat", serif!important;
+}
+.montserrat-med {
+  font-family: "Montserrat Medium", serif!important;
+}
+.myriad {
+  font-family: "Myriad", serif!important;
+}
+
+.font-12 {
+  font-size: 12px!important;
+}
+.font-14 {
+  font-size: 14px!important;
+}
+.font-16 {
+  font-size: 16px!important;
+}
+.font-18 {
+  font-size: 18px!important;
+}
+.font-36 {
+  font-size: 36px!important;
+}
+
+.text-default {
+  color: #3e5569!important;
+}
+
+.card-text-label {
+  font-size: 14px!important;
+}
+
+.card-text-input {
+  font-size: 14px!important;
+  letter-spacing: 4px;
+}
+
+@media screen and (min-width: 400px){
+  .card-text-input {
+    font-size: 16px!important;
+    letter-spacing: 6px;
+  }
+}

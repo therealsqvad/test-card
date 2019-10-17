@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="format-detection" content="telephone=no">
+  <title>Title</title>
+  <link rel="apple-touch-icon" sizes="57x57" href="#pageRootURL#img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="#pageRootURL#img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="#pageRootURL#img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="#pageRootURL#img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="#pageRootURL#img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="#pageRootURL#img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="#pageRootURL#img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="#pageRootURL#img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="#pageRootURL#img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="#pageRootURL#img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="#pageRootURL#img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="#pageRootURL#img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="#pageRootURL#img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="#pageRootURL#img/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="#pageRootURL#img/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="./js/credit-plugin/src/creditly.css">
+  <link rel="stylesheet" href="./js/jTippy-master/jTippy.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <script>
+    var ClientRootURL = "#clientRootURL#";
+    var Nonce = "#nonce#";
+    var SessionID = "#sessionID#";
+    var PageMode = "#pageMode#";
+    var MaskedPAN = "#maskedPAN#";
+  </script>
+  
+</head>
+<body>
+<div class="content montserrat">
+  <div class="container">
+    <div class="wrapper">
+      <div class="wrapper__head">
+        <div class="d-flex justify-content-between w-100">
+          <a href="#" class="logo">
+            <img src="img/logo.png" alt="">
+          </a>
+          <div class="shield">
+            <img src="img/shield.svg" alt="">
+            <span></span>The first single secure payment account
+          </div>
+        </div>
+      </div>
+      <div class="wrapper__body">
+        <form class="form">
+          <div class="card d-flex flex-column">
+            <div class="d-flex justify-content-end">
+              <img id="cardLogo" src="img/card/default.svg" height="42">
+            </div>
+            <label for="" class="text-default card-text-label mb-1">Номер карты</label>
+            <input
+              id="pan"
+              type="tel"
+              onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+              name="cardnumber"
+              class="input-form input-number myriad text-default card-text-input mb-3 p-1"
+              autocomplete="cc-number"
+              autocompletetype="cc-number"
+              x-autocompletetype="cc-number"
+              placeholder="____ ____ ____ ____"
+            />
+            
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-column">
+                <label class="text-default card-text-label mb-1">Срок действия</label>
+                <div class="date">
+                  <input
+                    id="exp"
+                    type="tel"
+                    name="cc-exp"
+                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                    class="pan1 input-form myriad text-default form__control card-text-input expInput p-1"
+                    placeholder="__/__"
+                    autocomplete="off"
+                    maxlength="5"
+                  >
+                </div>
+              </div>
+              <div class="d-flex flex-column align-items-baseline">
+                <span class="text-default card-text-label mb-1 ml-2">Код</span>
+                <input
+                  id="cvc"
+                  type="tel"
+                  name="cc-csc"
+                  onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                  maxlength="3"
+                  class="input-form text-default myriad form__control card-text-input cvcInput p-1"
+                  placeholder="___"
+                  autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class = "load-card-block">
+            <div class = "save-card">
+              <span class = "text-default font-14">Сохранить карту</span>
+              <input type="checkbox" id="cardTokenization" name = "saveCard" value="1">
+              <label for="cardTokenization" class="check">
+                <svg width="18px" height="18px" viewBox="0 0 18 18">
+                  <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                  <polyline points="1 9 7 14 15 4"></polyline>
+                </svg>
+              </label>
+              <button id="tooltip-about" class="tooltip" type="button">
+                <img src="img/question.svg" width="16" />
+              </button>
+            </div>
+          </div>
+          <div id="message"></div>
+          <div class="form-group form-group__price">
+            <span class="form-group__label text-default font-18 montserrat-med">Сумма к оплате</span>
+            <p class="price text-default font-36 montserrat-med">350000 ₽</p>
+          </div>
+          <div class = loadingBlock>
+            <div class = "loadingText">
+              Обработка платежа
+            </div>
+            <div class="windows8">
+              <div class="wBall" id="wBall_1">
+                <div class="wInnerBall"></div>
+              </div>
+              <div class="wBall" id="wBall_2">
+                <div class="wInnerBall"></div>
+              </div>
+              <div class="wBall" id="wBall_3">
+                <div class="wInnerBall"></div>
+              </div>
+              <div class="wBall" id="wBall_4">
+                <div class="wInnerBall"></div>
+              </div>
+              <div class="wBall" id="wBall_5">
+                <div class="wInnerBall"></div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-blue form__btn font-16 montserrat" id="payButton">Оплатить</button>
+          <p class="oferta">
+          
+          </p>
+        </form>
+      </div>
+    </div>
+    <img src="#pageRootURL#img/logo%202.svg" class="security-logos" alt="">
+  </div>
+</div>
+
+<form id="3dsForm" method="POST" action="">
+  <input type="hidden" id="paReq" name="PaReq" value="">
+  <input type="hidden" id="md" name="MD" value="">
+  <input type="hidden" id="termURL" name="TermUrl" value="#clientRootURL#confirm/?inData=request&nonce=#nonce3DS#&sessionID=#sessionID#">
+</form>
+
+<script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.js"></script>
+<script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/app.js"></script>
+<script src="https://kit.fontawesome.com/19a0dafb10.js"></script>
+<script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.base64.min.js"></script>
+<script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/processPayment.js"></script>
+
+<script src="js/inputmask-5.js"></script>
+<script src="js/jTippy-master/jTippy.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

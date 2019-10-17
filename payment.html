@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>Title</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        var ClientRootURL = "#clientRootURL#";
+        var Nonce = "#nonce#";
+        var SessionID = "#sessionID#";
+        var PageMode = "#pageMode#";
+        var MaskedPAN = "#maskedPAN#";
+    </script>
+
+</head>
+<body>
+   <div class="content">
+    <div class="container">
+        <div class="wrapper">
+            <div class="wrapper__head">
+                <a href="#" class="logo">
+                    <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/logo.png" alt="">
+                </a>
+                <div class="shield">
+                    <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/shield.svg" alt="">
+                    The first single secure payment account
+                </div>
+            </div>
+            <div class="wrapper__body">
+               <form class="form">
+                   <div class="card">
+                       <div class="form-group">
+                           <span class="form-group__label">Номер карты плательщика</span>
+                           <div class="card__area">
+                               <input type="text" name="credit_card_number panInput" class="credit" id="pan" placeholder="0000 0000 0000 0000" autocomplete="off">
+                               <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/card.svg" alt="">
+                           </div>
+                       </div>
+                       <div class="form-group form-group--date">
+                           <span class="form-group__label">Срок действия</span>
+                           <div class="date">
+                               <input onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="tel" class="form__control expInput" id="exp" placeholder="ММ / ГГ" autocomplete="off" maxlength="5">
+                           </div>
+                       </div>
+                       <div class="form-group cvv">
+                           <span class="form-group__label cvv__mob-label">Код</span>
+                           <input onkeypress='return event.charCode >= 48 && event.charCode <= 57'  type="tel" class="form__control cvcInput" id="cvc" placeholder="000" autocomplete="off">
+                           <span class="form-group__label">3 цифры <br>на обороте</span>
+                       </div>
+                        <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/alllogo.svg" class="card-logos" alt="">
+                   </div>
+                   <div class = "load-card-block">
+                       <div class = "save-card"><span class = "save-text">Сохранить карту</span>
+
+                        <input type="checkbox" id="cardTokenization" name = "saveCard" value="1">
+                        <label for="cardTokenization" class="check">
+                        <svg width="18px" height="18px" viewBox="0 0 18 18">
+                            <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                            <polyline points="1 9 7 14 15 4"></polyline>
+                        </svg>
+                        </label>
+                        <button class="tooltip" type = "button"></button>
+                       </div>
+                   </div>
+                   <div class = "iosHoverMobele">Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с карты без вашего желания</div>
+                   <p class="pay-for">#description#</p>
+                   <div class="form-group form-group__price">
+                       <span class="form-group__label">Сумма к оплате</span>
+                       <p class="price">#amount# ₽</p>
+                   </div>
+                   <div class = loadingBlock>
+                       <div class = "loadingText">
+                           Обработка платежа
+                       </div>
+                       <div class="windows8">
+                        <div class="wBall" id="wBall_1">
+                            <div class="wInnerBall"></div>
+                        </div>
+                        <div class="wBall" id="wBall_2">
+                            <div class="wInnerBall"></div>
+                        </div>
+                        <div class="wBall" id="wBall_3">
+                            <div class="wInnerBall"></div>
+                        </div>
+                        <div class="wBall" id="wBall_4">
+                            <div class="wInnerBall"></div>
+                        </div>
+                        <div class="wBall" id="wBall_5">
+                            <div class="wInnerBall"></div>
+                        </div>
+                    </div>
+                   </div>
+                   <div id="message"></div>
+                   <button type="button" class="btn btn-blue form__btn" id="payButton">Оплатить</button>
+                   <p class="oferta">
+                   
+                   </p>
+               </form>
+            </div>
+        </div>
+        <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/logo%202.svg" class="security-logos" alt="">
+    </div>
+   </div>
+
+    <form id="3dsForm" method="POST" action="">
+        <input type="hidden" id="paReq" name="PaReq" value="">
+        <input type="hidden" id="md" name="MD" value="">
+        <input type="hidden" id="termURL" name="TermUrl" value="#clientRootURL#confirm/?inData=request&nonce=#nonce3DS#&sessionID=#sessionID#">
+    </form>
+
+   <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.js"></script>
+    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.maskedinput.min.js"></script>
+    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/app.js"></script>
+    <script src="https://kit.fontawesome.com/19a0dafb10.js"></script>
+    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.base64.min.js"></script>
+    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/processPayment.js"></script>
+</body>
+</html>

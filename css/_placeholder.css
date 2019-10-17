@@ -1,0 +1,43 @@
+::-webkit-input-placeholder {
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+:-moz-placeholder {
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+::-moz-placeholder {
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+:-ms-input-placeholder {
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+::-ms-input-placeholder {
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+
+@media screen and (min-width: 400px){
+  ::-webkit-input-placeholder {
+    font-size: 16px;
+    letter-spacing: 6px;
+  }
+  :-moz-placeholder {
+    font-size: 16px;
+    letter-spacing: 6px;
+  }
+  ::-moz-placeholder {
+    font-size: 16px;
+    letter-spacing: 6px;
+  }
+  :-ms-input-placeholder {
+    font-size: 16px;
+    letter-spacing: 6px;
+  }
+  ::-ms-input-placeholder {
+    font-size: 16px;
+    letter-spacing: 6px;
+  }
+}
