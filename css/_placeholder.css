@@ -1,22 +1,27 @@
 ::-webkit-input-placeholder {
   font-size: 14px;
   letter-spacing: 4px;
+  font-weight: normal;
 }
 :-moz-placeholder {
   font-size: 14px;
   letter-spacing: 4px;
+  font-weight: normal;
 }
 ::-moz-placeholder {
   font-size: 14px;
   letter-spacing: 4px;
+  font-weight: normal;
 }
 :-ms-input-placeholder {
   font-size: 14px;
   letter-spacing: 4px;
+  font-weight: normal;
 }
 ::-ms-input-placeholder {
   font-size: 14px;
   letter-spacing: 4px;
+  font-weight: normal;
 }
 
 @media screen and (min-width: 400px){

@@ -140,10 +140,6 @@ input:disabled{
   width: 18px;
   margin-right: 6px;
 }
-.wrapper__body{
-    padding: 15px 25px 25px;
-    overflow: hidden;
-}
 
 .form{
     max-width: 430px;
