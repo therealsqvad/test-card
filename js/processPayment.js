@@ -67,7 +67,7 @@ $("#payButton").click(function() {
   }
   
   $("#payButton").prop("disabled", true);
-  ShowMessage("РћРїРµСЂР°С†РёСЏ РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРґРѕР¶РґРёС‚Рµ...");
+  ShowMessage("Операция обрабатывается. Пожалуйста, подождите...");
   
   $.getJSON(
     URL,{
@@ -82,7 +82,7 @@ $("#payButton").click(function() {
         switch (json.outData.confirmationType)
         {
           case 1:
-            ShowMessage("РћСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ РїРµСЂРµС…РѕРґ РЅР° СЃС‚СЂР°РЅРёС†Сѓ СЃ СЂРµР·СѓР»СЊС‚Р°С‚РѕРј РѕРїРµСЂР°С†РёРё...");
+            ShowMessage("Осуществляется переход на страницу с результатом операции...");
             
             window.location.replace($("#termURL").val());
             
@@ -90,7 +90,7 @@ $("#payButton").click(function() {
           
           
           case 2:
-            ShowMessage("РћСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ РїРµСЂРµС…РѕРґ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РѕРїРµСЂР°С†РёРё...");
+            ShowMessage("Осуществляется переход на страницу подтверждения операции...");
             
             $("#3dsForm").attr("action", json.outData.tdsRequest.acsURL);
             $("#paReq").val(json.outData.tdsRequest.paReq);
@@ -102,26 +102,26 @@ $("#payButton").click(function() {
           
           
           default:
-            ShowAlertMessage("РћС€РёР±РєР°! РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РѕРїРµСЂР°С†РёРё: "  +  json.outData.confirmationType);
+            ShowAlertMessage("Ошибка! Неизвестный тип подтверждения операции: "  +  json.outData.confirmationType);
             
             break;
         }
       }
       else if (json.result.code == 100009)
       {
-        ShowAlertMessage('Р’СЂРµРјСЏ Р’Р°С€РµР№ СЃРµСЃСЃРёРё РёСЃС‚РµРєР»Рѕ! Р’РµСЂРЅРёС‚РµСЃСЊ РЅР° РёСЃС…РѕРґРЅСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ Рё РїРѕРІС‚РѕСЂРёС‚Рµ РїР»Р°С‚РµР¶.');
+        ShowAlertMessage('Время Вашей сессии истекло! Вернитесь на исходную страницу и повторите платеж.');
         
         $("#payButton").prop("disabled", false);
       }
       else
       {
-        ShowAlertMessage("РћС€РёР±РєР°! РљРѕРґ: "  +  json.result.code  +  "; СЃРѕРѕР±С‰РµРЅРёРµ: "  +  json.result.message);
+        ShowAlertMessage("Ошибка! Код: "  +  json.result.code  +  "; сообщение: "  +  json.result.message);
         
         $("#payButton").prop("disabled", false);
       }
     })
     .fail(function(jqxhr, textStatus, error) {
-      ShowAlertMessage("РћС€РёР±РєР° Р·Р°РїСЂРѕСЃР° РІ РїР»Р°С‚РµР¶РЅС‹Р№ С€Р»СЋР·: " + textStatus + "; " + error);
+      ShowAlertMessage("Ошибка запроса в платежный шлюз: " + textStatus + "; " + error);
       
       $("#payButton").prop("disabled", false);
     });

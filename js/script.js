@@ -6,7 +6,7 @@ const $pan = $('#pan'),
       mastercard = [51, 52, 53, 54, 55],
       maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604];
 
-$pan.on('input', function (event) {
+$pan.on('input', function(event) {
   let number = $(this).val().replace(/\s+/g, ' ');
   console.log(number);
   
@@ -27,7 +27,35 @@ $pan.on('input', function (event) {
   }
 });
 
-$pan.on('blur', )
+$pan.on('blur', function(event) {
+  let number = $(this).val().replace(/\s+/g, '');
+  if (luhnAlgorithm(number) && !$errorNumber.hasClass('d-none')) {
+    $errorNumber.addClass('d-none');
+    console.warn('hide');
+  } else if (!luhnAlgorithm(number) && $errorNumber.hasClass('d-none')) {
+    $errorNumber.removeClass('d-none');
+    console.warn('show');
+  }
+  console.log(typeof (number));
+  console.warn(luhnAlgorithm($(this).val()));
+});
+
+function luhnAlgorithm(digits) {
+  let sum = 0;
+  
+  for (let i = 0; i < digits.length; i++) {
+    let cardNum = parseInt(digits[i]);
+    if ((digits.length - i) % 2 === 0) {
+      cardNum = cardNum * 2;
+      if (cardNum > 9) {
+        cardNum = cardNum - 9;
+      }
+    }
+    sum += cardNum;
+  }
+  
+  return sum % 10 === 0;
+}
 
 function detectCard(str, arr) {
   for ( let i = 0; i < arr.length; i++ ) {
@@ -57,4 +85,3 @@ $('#tooltip-about').jTippy({
   title: 'Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с карты без вашего желания',
 });
 
-$errorNumber.hidden;

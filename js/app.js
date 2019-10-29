@@ -446,18 +446,6 @@
 })(jQuery);
 
 
-function changeCardImage(code) {
-  switch (checkOper(code)) {
-    case "РњРР ": $(".card__area img").attr("src", 				pageRoot + "img/mir-logo.svg"); break;
-    case "РњР°СЃС‚РµСЂРєР°СЂРґ": $(".card__area img").attr("src", 		pageRoot + "img/mastercar.svg"); break;
-    case "РњР°СЌСЃС‚СЂРѕ": $(".card__area img").attr("src",			pageRoot + "img/maestro.svg"); break;
-    case "China UnionPay": $(".card__area img").attr("src", 	pageRoot + "img/UnionPay.svg"); break;
-    case "Visa Electron": $(".card__area img").attr("src", 		pageRoot + "img/visa-electron.svg"); break;
-    case "Visa": $(".card__area img").attr("src", 				pageRoot + "img/visa.svg"); break;
-    default: $(".card__area img").attr("src", 					pageRoot + "img/card.svg")
-  }
-}
-
 function checkOper(code) {
   var a = code, oper = "";
   for (var i = 0; i < 6; i++) {
@@ -485,11 +473,8 @@ jQuery(function ($) {
 
 
 
-// РєРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ РѕС€РёР±РѕРє РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃРєСЂС‹С‚
 $('#message').hide();
 
-// РїРѕРєР°Р·С‹РІР°РµРј РєРѕРЅС‚РµР№РЅРµСЂ, РµСЃР»Рё Сѓ С„РѕСЂРјС‹ РµСЃС‚СЊ РєР»Р°СЃСЃ error
-// РґРµР»Р°РµРј РѕС‚СЃС‚СѓРї Сѓ РєР°СЂС‚РѕС‡РєРё СЂР°РІРЅС‹Р№ РІС‹СЃРѕС‚Рµ РєРѕРЅС‚РµР№РЅРµСЂР° СЃ РѕС€РёР±РєРѕР№ + 14
 if ($('.form').hasClass('error')) {
   $('#message').show();
   
