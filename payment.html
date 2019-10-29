@@ -24,14 +24,6 @@
     <meta name="msapplication-TileImage" content="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/ms-icon-144x144.png">
     <link rel="stylesheet" href="css/style.css">
 
-    <script>
-        var ClientRootURL = "#clientRootURL#";
-        var Nonce = "#nonce#";
-        var SessionID = "#sessionID#";
-        var PageMode = "#pageMode#";
-        var MaskedPAN = "#maskedPAN#";
-    </script>
-
 </head>
 <body>
     <div class="container pt-sm-1">
@@ -70,11 +62,9 @@
                       x-autocompletetype="cc-number"
                       placeholder="____ ____ ____ ____"
                     />
-                    {errorNumber && (
-                    <div class="error-number position-absolute text-danger font-11 font-weight-bold ">
+                    <div id="errorNumber" class="error-number d-none position-absolute text-danger font-11 font-weight-bold ">
                       Неверный номер карты
                     </div>
-                    )}
                   </div>
                   
                        <div class="form-group">
@@ -95,7 +85,6 @@
                            <input onkeypress='return event.charCode >= 48 && event.charCode <= 57'  type="tel" class="form__control cvcInput" id="cvc" placeholder="000" autocomplete="off">
                            <span class="form-group__label">3 цифры <br>на обороте</span>
                        </div>
-                        <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/alllogo.svg" class="card-logos" alt="">
                    </div>
                    <div class = "load-card-block">
                        <div class = "save-card"><span class = "save-text">Сохранить карту</span>
@@ -158,13 +147,12 @@
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="js/inputmask-5/jquery.inputmask.min.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/script.js"></script>
-    
+    <script src="js/processPayment.js"></script>
     
 
-    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/app.js"></script>
-    <script src="https://kit.fontawesome.com/19a0dafb10.js"></script>
-    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.base64.min.js"></script>
-    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/processPayment.js"></script>
+    <!--<script src="https://kit.fontawesome.com/19a0dafb10.js"></script>-->
+<!--    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.base64.min.js"></script>-->
 </body>
 </html>
