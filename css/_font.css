@@ -1,40 +1,46 @@
-@font-face {
-  font-family: "Montserrat";
-  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Montserrat Medium";
-  src: url("../fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
-}
-@font-face {
-  font-family: 'Myriad';
-  src: url("../fonts/Myriad/Myriad-Pro_31655.ttf") format("truetype");
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap&subset=cyrillic');
 
-.montserrat {
-  font-family: "Montserrat", serif!important;
+.font-10 {
+  font-size: 10px;
 }
-.montserrat-med {
-  font-family: "Montserrat Medium", serif!important;
+.font-11 {
+  font-size: 11px;
 }
-.myriad {
-  font-family: "Myriad", serif!important;
-}
-
 .font-12 {
-  font-size: 12px!important;
+  font-size: 12px;
+}
+.font-13 {
+  font-size: 13px;
 }
 .font-14 {
-  font-size: 14px!important;
+  font-size: 14px;
 }
-.font-16 {
-  font-size: 16px!important;
+.font-15 {
+  font-size: 15px;
 }
 .font-18 {
-  font-size: 18px!important;
+  font-size: 18px;
+}
+.font-20 {
+  font-size: 20px;
+}
+.font-23 {
+  font-size: 23px;
+}
+.font-24 {
+  font-size: 24px;
+}
+.font-25 {
+  font-size: 25px;
+}
+.font-26 {
+  font-size: 26px;
 }
 .font-36 {
-  font-size: 36px!important;
+  font-size: 36px;
+}
+.font-50 {
+  font-size: 50px;
 }
 
 .text-default {
@@ -55,4 +61,17 @@
     font-size: 16px!important;
     letter-spacing: 6px;
   }
+}
+
+.font-weight-bold {
+  font-weight: 700;
+}
+
+.montserrat {
+  font-family: "Montserrat", monospace, serif;
+  font-weight: 400;
+}
+.montserrat-med {
+  font-family: "Montserrat", monospace, monospace;
+  font-weight: 500;
 }

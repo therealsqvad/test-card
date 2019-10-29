@@ -1,0 +1,21 @@
+.text-primary {
+  color: var(--primary)!important;
+}
+
+.text-gray-1 {
+  color: #64677081;
+}
+
+.text-gray-2 {
+  color: #999;
+}
+
+.text-default {
+  color: #3e5569;
+}
+.text-success {
+  color: #27ad5c;
+}
+.text-danger {
+  color: #ad2727;
+}

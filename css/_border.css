@@ -1,0 +1,8 @@
+.border-0 {
+  border: none;
+}
+
+.out-none:focus,
+.out-none:active {
+  outline: none;
+}

