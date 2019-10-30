@@ -1,14 +1,20 @@
 const $pan = $('#pan'),
-      $exp = $('#exp'),
-      $cvc = $('#cvc'),
-      $cardLogo = $('#cardLogo'),
-      $errorNumber =$('#errorNumber'),
-      mastercard = [51, 52, 53, 54, 55],
-      maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604];
+  $exp = $('#exp'),
+  $cvc = $('#cvc'),
+  $cardLogo = $('#cardLogo'),
+  $errorNumber = $('#errorNumber'),
+  $payButton = $('#payButton'),
+  mastercard = [51, 52, 53, 54, 55],
+  maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604],
+  year = new Date().getFullYear() % 100;
 
-$pan.on('input', function(event) {
+let payEnable = false,
+    numValid = false,
+    expValid = false,
+    cvcValid = false;
+
+$pan.on('input', function (event) {
   let number = $(this).val().replace(/\s+/g, ' ');
-  console.log(number);
   
   if (number.indexOf('4') === 0) {
     $cardLogo.attr('src', './img/card/cc-visa.svg');
@@ -27,21 +33,28 @@ $pan.on('input', function(event) {
   }
 });
 
-$pan.on('blur', function(event) {
+$pan.on('blur', function (event) {
   let number = $(this).val().replace(/\s+/g, '');
-  if (luhnAlgorithm(number) && !$errorNumber.hasClass('d-none')) {
-    $errorNumber.addClass('d-none');
-    console.warn('hide');
-  } else if (!luhnAlgorithm(number) && $errorNumber.hasClass('d-none')) {
-    $errorNumber.removeClass('d-none');
-    console.warn('show');
+  if (luhnAlgorithm(number)) {
+    numValid = true;
+    if (!$errorNumber.hasClass('d-none')) {
+      $errorNumber.addClass('d-none');
+    }
+  } else {
+    numValid = false;
+    if ($errorNumber.hasClass('d-none')) {
+      $errorNumber.removeClass('d-none');
+    }
   }
-  console.log(typeof (number));
-  console.warn(luhnAlgorithm($(this).val()));
+  btnPayStatus();
 });
 
 function luhnAlgorithm(digits) {
   let sum = 0;
+  
+  if (digits === '') {
+    return false;
+  }
   
   for (let i = 0; i < digits.length; i++) {
     let cardNum = parseInt(digits[i]);
@@ -57,13 +70,58 @@ function luhnAlgorithm(digits) {
   return sum % 10 === 0;
 }
 
+$exp.on('input', function (e) {
+  const exp = e.target.value.replace(/_|\//g, '');
+  
+  if ((exp.length === 1) && (!exp.match(/0|1/))) {
+    e.target.value = '';
+  }
+  if ((exp.length >= 2) && (exp.match(/([0][1-9]|[1][0-2])/) === null)) {
+    e.target.value = exp[0];
+  }
+  if (exp.length === 4) {
+    if (parseInt(exp.substr(-2), 10) < year
+      || parseInt(exp.substr(-2), 10) > year + 10) {
+      e.target.value = exp.slice(0, 2);
+      expValid = false;
+    } else {
+//      $cvc.focus();
+      expValid = true;
+    }
+  } else {
+    expValid = false;
+  }
+  btnPayStatus();
+})
+
+$cvc.on('input', function (e) {
+  const cvc = e.target.value.replace(/_/g, '');
+  console.log(e.target.value);
+  if (cvc.length === 3) {
+//    $cvc.blur();
+    cvcValid = true;
+  } else {
+    cvcValid = false;
+  }
+  btnPayStatus();
+})
+
 function detectCard(str, arr) {
-  for ( let i = 0; i < arr.length; i++ ) {
+  for (let i = 0; i < arr.length; i++) {
     if (str.indexOf(arr[i].toString()) === 0) {
       return true;
     }
   }
   return false;
+}
+
+function btnPayStatus() {
+  payEnable = numValid && expValid && cvcValid;
+  if (payEnable) {
+    $payButton.prop("disabled", false);
+  } else {
+    $payButton.prop("disabled", true);
+  }
 }
 
 $pan.inputmask({

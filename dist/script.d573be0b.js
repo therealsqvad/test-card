@@ -118,18 +118,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/script.js":[function(require,module,exports) {
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 var $pan = $('#pan'),
     $exp = $('#exp'),
     $cvc = $('#cvc'),
     $cardLogo = $('#cardLogo'),
     $errorNumber = $('#errorNumber'),
     mastercard = [51, 52, 53, 54, 55],
-    maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604];
+    maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604],
+    year = new Date().getFullYear() % 100;
+var numValid = false,
+    expValid = false;
 $pan.on('input', function (event) {
   var number = $(this).val().replace(/\s+/g, ' ');
-  console.log(number);
 
   if (number.indexOf('4') === 0) {
     $cardLogo.attr('src', './img/card/cc-visa.svg');
@@ -153,13 +153,14 @@ $pan.on('blur', function (event) {
   if (luhnAlgorithm(number) && !$errorNumber.hasClass('d-none')) {
     $errorNumber.addClass('d-none');
     console.warn('hide');
+    numValid = true;
   } else if (!luhnAlgorithm(number) && $errorNumber.hasClass('d-none')) {
     $errorNumber.removeClass('d-none');
     console.warn('show');
-  }
+    numValid = false;
+  } //  console.log(typeof (number));
+  //  console.warn(luhnAlgorithm($(this).val()));
 
-  console.log(_typeof(number));
-  console.warn(luhnAlgorithm($(this).val()));
 });
 
 function luhnAlgorithm(digits) {
@@ -181,6 +182,33 @@ function luhnAlgorithm(digits) {
 
   return sum % 10 === 0;
 }
+
+$exp.on('input', function (e) {
+  var exp = e.target.value.replace(/_|\//g, '');
+
+  if (exp.length === 1 && !exp.match(/0|1/)) {
+    e.target.value = '';
+    console.log(1);
+  }
+
+  if (exp.length >= 2 && exp.match(/([0][1-9]|[1][0-2])/) === null) {
+    e.target.value = exp[0];
+    console.log(3);
+  }
+
+  if (exp.length === 5) {
+    if (parseInt(exp.substr(-2), 10) < year || parseInt(exp.substr(-2), 10) > year + 10) {
+      e.target.value = exp.slice(0, 3);
+      expValid = false;
+    } else {
+      document.getElementById('cvc').focus();
+      expValid = true;
+    }
+  }
+
+  console.log(exp);
+  console.log(e.target.value);
+});
 
 function detectCard(str, arr) {
   for (var i = 0; i < arr.length; i++) {
