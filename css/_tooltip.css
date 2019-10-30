@@ -3,7 +3,10 @@
   word-wrap: break-word;
   border: 0;
   background: #fff;
-  
+}
+.tooltip-about:active,
+.tooltip-about:focus {
+  outline: 0;
 }
 .tooltip-about .jt-title {
   white-space: normal;

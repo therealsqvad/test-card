@@ -117,134 +117,112 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/processPayment.js":[function(require,module,exports) {
+var ClientRootURL = "#clientRootURL#";
+var Nonce = "#nonce#";
+var SessionID = "#sessionID#";
+var PageMode = "#pageMode#";
+var MaskedPAN = "#maskedPAN#";
+var NonceAddition = 0;
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+function number_format(number, decimals, dec_point, thousands_sep) {
+  // Strip all characters but numerical ones.
+  number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+
+  var n = !isFinite(+number) ? 0 : +number,
+      prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+      sep = typeof thousands_sep === 'undefined' ? ',' : thousands_sep,
+      dec = typeof dec_point === 'undefined' ? '.' : dec_point,
+      s = '',
+      toFixedFix = function toFixedFix(n, prec) {
+    var k = Math.pow(10, prec);
+    return '' + Math.round(n * k) / k;
+  }; // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+
+
+  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+
+  if (s[0].length > 3) {
+    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
   }
 
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
+  if ((s[1] || '').length < prec) {
+    s[1] = s[1] || '';
+    s[1] += new Array(prec - s[1].length + 1).join('0');
   }
 
-  return '/';
+  return s.join(dec);
 }
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+function ShowMessage(message) {
+  $("#message").addClass('text-success').html(message);
 }
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
+function ShowAlertMessage(message) {
+  $("#message").html(message);
 }
 
-var cssTimeout = null;
+$(document).ready(function () {
+  $.ajaxSetup({
+    cache: false
+  });
+  $("#payButton").prop("disabled", true);
+});
+$("#payButton").click(function () {
+  NonceAddition++;
 
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
+  switch (PageMode) {
+    case "cvcOnly":
+      var URL = ClientRootURL + "payment/";
+      var InData = $.base64.encode('{"card":{"cvc2":"' + $("#cvc").val() + '"}}');
+      break;
+
+    default:
+      var URL = ClientRootURL + "payment/";
+      var InData = $.base64.encode('{"card":{"pan":"' + $("#pan").val().replace(/\s/g, "") + '","expDate":{"year":"20' + $("#exp").val().split("/")[1] + '","month":"' + parseInt($("#exp").val().split("/")[0], 10) + '"},"cvc2":"' + $("#cvc").val() + '"}' + ($("#saveCard").is(':checked') ? ',"saveCard":1' : '') + '}');
+      break;
   }
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
+  $("#payButton").prop("disabled", true);
+  ShowMessage("Операция обрабатывается. Пожалуйста, подождите...");
+  $.getJSON(URL, {
+    inData: InData,
+    nonce: Nonce + ":" + String(NonceAddition),
+    sessionID: SessionID,
+    errorOutFormat: "json"
+  }).done(function (json) {
+    if (json.result.code == 0) {
+      switch (json.outData.confirmationType) {
+        case 1:
+          ShowMessage("Осуществляется переход на страницу с результатом операции...");
+          window.location.replace($("#termURL").val());
+          break;
 
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+        case 2:
+          ShowMessage("Осуществляется переход на страницу подтверждения операции...");
+          $("#3dsForm").attr("action", json.outData.tdsRequest.acsURL);
+          $("#paReq").val(json.outData.tdsRequest.paReq);
+          $("#md").val(json.outData.tdsRequest.md);
+          $("#3dsForm").submit();
+          break;
+
+        default:
+          ShowAlertMessage("Ошибка! Неизвестный тип подтверждения операции: " + json.outData.confirmationType);
+          break;
       }
+    } else if (json.result.code == 100009) {
+      ShowAlertMessage('Время Вашей сессии истекло! Вернитесь на исходную страницу и повторите платеж.');
+      $("#payButton").prop("disabled", false);
+    } else {
+      ShowAlertMessage("Ошибка! Код: " + json.result.code + "; сообщение: " + json.result.message);
+      $("#payButton").prop("disabled", false);
     }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/bootstrap-reboot.min.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/bootstrap-grid.min.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_font.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_form.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_placeholder.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_tooltip.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_card.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_color.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_border.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_shadow.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_button.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./bootstrap-reboot.min.css":"css/bootstrap-reboot.min.css","./bootstrap-grid.min.css":"css/bootstrap-grid.min.css","./_font.css":"css/_font.css","./_form.css":"css/_form.css","./_placeholder.css":"css/_placeholder.css","./_tooltip.css":"css/_tooltip.css","./_card.css":"css/_card.css","./_color.css":"css/_color.css","./_border.css":"css/_border.css","./_shadow.css":"css/_shadow.css","./_button.css":"css/_button.css","_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  }).fail(function (jqxhr, textStatus, error) {
+    ShowAlertMessage("Ошибка запроса в платежный шлюз: " + textStatus + "; " + error);
+    $("#payButton").prop("disabled", false);
+  });
+});
+},{}],"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -447,5 +425,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.78032849.js.map
+},{}]},{},["../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/processPayment.js"], null)
+//# sourceMappingURL=/processPayment.06fdc3ea.js.map

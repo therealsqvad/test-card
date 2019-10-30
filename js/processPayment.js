@@ -33,7 +33,7 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 
 function ShowMessage(message)
 {
-  $("#message").html(message);
+  $("#message").addClass('text-success').html(message);
 }
 
 function ShowAlertMessage(message)
@@ -41,11 +41,10 @@ function ShowAlertMessage(message)
   $("#message").html(message);
 }
 
-
 $(document).ready(function() {
   $.ajaxSetup({ cache: false });
+  $("#payButton").prop("disabled", true);
 });
-
 
 $("#payButton").click(function() {
   NonceAddition++;
@@ -55,13 +54,11 @@ $("#payButton").click(function() {
     case "cvcOnly":
       var URL = ClientRootURL + "payment/";
       var InData = $.base64.encode('{"card":{"cvc2":"' + $("#cvc").val() + '"}}');
-      
       break;
-    
     
     default:
       var URL = ClientRootURL + "payment/";
-      var InData = $.base64.encode('{"card":{"pan":"' + $("#pan").val().replace(/\s/g, "") + '","expDate":{"year":"20' + $("#exp").val().split("/")[1] + '","month":"' + parseInt($("#exp").val().split("/")[0], 10) + '"},"cvc2":"' + $("#cvc").val() + '"}' + ($("#cardTokenization").is(':checked') ? ',"cardTokenization":1' : '') + '}');
+      var InData = $.base64.encode('{"card":{"pan":"' + $("#pan").val().replace(/\s/g, "") + '","expDate":{"year":"20' + $("#exp").val().split("/")[1] + '","month":"' + parseInt($("#exp").val().split("/")[0], 10) + '"},"cvc2":"' + $("#cvc").val() + '"}' + ($("#saveCard").is(':checked') ? ',"saveCard":1' : '') + '}');
       
       break;
   }

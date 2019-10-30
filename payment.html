@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="format-detection" content="telephone=no">
-  <title>Title</title>
+  <title>Оплата</title>
   <link rel="apple-touch-icon" sizes="57x57"
         href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60"
@@ -52,9 +52,9 @@
         <div class="d-none d-md-flex align-items-center ml-3">
           <img src="./img/shield.svg" alt="shield" width="20" />
           <span class="font-13 text-gray-1 ml-2">
-                The first single secure
+            The first single secure
             <br />
-                payment account
+            payment account
           </span>
         </div>
       </div>
@@ -65,8 +65,7 @@
             <br />
             Бонусы
           </div>
-          <div class="text-primary font-24 font-medium p-2" style="line-height: 0.1">14
-            <!--{bonuses !== '' ? bonuses : <Spinner variant="primary" animation="border" size="sm" />}-->
+          <div class="text-primary font-24 font-medium p-2" style="line-height: 0.1">
           </div>
           <img src="./img/bonus.svg" alt="bonus" width="24" />
         </div>
@@ -147,33 +146,8 @@
           <span class="text-default font-18 montserrat-med">Сумма к оплате</span>
           <p class="text-default font-36 montserrat-med mb-3">350 000 ₽</p>
         </div>
-        <div class=loadingBlock>
-          <div class="loadingText">
-            Обработка платежа
-          </div>
-          <div class="windows8">
-            <div class="wBall" id="wBall_1">
-              <div class="wInnerBall"></div>
-            </div>
-            <div class="wBall" id="wBall_2">
-              <div class="wInnerBall"></div>
-            </div>
-            <div class="wBall" id="wBall_3">
-              <div class="wInnerBall"></div>
-            </div>
-            <div class="wBall" id="wBall_4">
-              <div class="wInnerBall"></div>
-            </div>
-            <div class="wBall" id="wBall_5">
-              <div class="wInnerBall"></div>
-            </div>
-          </div>
-        </div>
-        <div id="message"></div>
         <button type="button" class="btn btn-pay align-self-center lh-1 font-16 mb-3" id="payButton">Оплатить</button>
-        <p class="oferta">
-        
-        </p>
+        <div id="message"></div>
       </form>
     </div>
   </div>
@@ -191,14 +165,15 @@
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
+<script src="js/base64.js"></script>
 <script src="js/inputmask-5/jquery.inputmask.min.js"></script>
 <script src="js/processPayment.js"></script>
 <script src="js/jTippy-master/jTippy.min.js"></script>
+<script src="js/request.js"></script>
 <script src="js/script.js"></script>
 
 
 <!--    <script src="js/app.js"></script>-->
 <!--<script src="https://kit.fontawesome.com/19a0dafb10.js"></script>-->
-<!--    <script src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/js/jquery.base64.min.js"></script>-->
 </body>
 </html>

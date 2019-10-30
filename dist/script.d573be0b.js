@@ -117,134 +117,98 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/script.js":[function(require,module,exports) {
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+var $pan = $('#pan'),
+    $exp = $('#exp'),
+    $cvc = $('#cvc'),
+    $cardLogo = $('#cardLogo'),
+    $errorNumber = $('#errorNumber'),
+    mastercard = [51, 52, 53, 54, 55],
+    maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604];
+$pan.on('input', function (event) {
+  var number = $(this).val().replace(/\s+/g, ' ');
+  console.log(number);
+
+  if (number.indexOf('4') === 0) {
+    $cardLogo.attr('src', './img/card/cc-visa.svg');
+  } else if (number.indexOf('2') === 0) {
+    $cardLogo.attr('src', './img/card/cc-mir.svg');
+  } else if (number.indexOf('62') === 0) {
+    $cardLogo.attr('src', './img/card/cc-unionpay.svg');
+  } else if (number.indexOf('34') === 0 || number.indexOf('37') === 0) {
+    $cardLogo.attr('src', './img/card/cc-amex.svg');
+  } else if (detectCard(number, mastercard)) {
+    $cardLogo.attr('src', './img/card/cc-mastercard.svg');
+  } else if (detectCard(number, maestro)) {
+    $cardLogo.attr('src', './img/card/cc-maestro.svg');
+  } else {
+    $cardLogo.attr('src', './img/card/default.svg');
+  }
+});
+$pan.on('blur', function (event) {
+  var number = $(this).val().replace(/\s+/g, '');
+
+  if (luhnAlgorithm(number) && !$errorNumber.hasClass('d-none')) {
+    $errorNumber.addClass('d-none');
+    console.warn('hide');
+  } else if (!luhnAlgorithm(number) && $errorNumber.hasClass('d-none')) {
+    $errorNumber.removeClass('d-none');
+    console.warn('show');
   }
 
-  return bundleURL;
-}
+  console.log(_typeof(number));
+  console.warn(luhnAlgorithm($(this).val()));
+});
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+function luhnAlgorithm(digits) {
+  var sum = 0;
 
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
+  for (var i = 0; i < digits.length; i++) {
+    var cardNum = parseInt(digits[i]);
 
-  return '/';
-}
+    if ((digits.length - i) % 2 === 0) {
+      cardNum = cardNum * 2;
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+      if (cardNum > 9) {
+        cardNum = cardNum - 9;
       }
     }
 
-    cssTimeout = null;
-  }, 50);
+    sum += cardNum;
+  }
+
+  return sum % 10 === 0;
 }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/bootstrap-reboot.min.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+function detectCard(str, arr) {
+  for (var i = 0; i < arr.length; i++) {
+    if (str.indexOf(arr[i].toString()) === 0) {
+      return true;
+    }
+  }
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/bootstrap-grid.min.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+  return false;
+}
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_font.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_form.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_placeholder.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_tooltip.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_card.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_color.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_border.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_shadow.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/_button.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"css/style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./bootstrap-reboot.min.css":"css/bootstrap-reboot.min.css","./bootstrap-grid.min.css":"css/bootstrap-grid.min.css","./_font.css":"css/_font.css","./_form.css":"css/_form.css","./_placeholder.css":"css/_placeholder.css","./_tooltip.css":"css/_tooltip.css","./_card.css":"css/_card.css","./_color.css":"css/_color.css","./_border.css":"css/_border.css","./_shadow.css":"css/_shadow.css","./_button.css":"css/_button.css","_css_loader":"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+$pan.inputmask({
+  'mask': '9999 9999 9999 9999'
+});
+$exp.inputmask({
+  'mask': '99/99'
+});
+$cvc.inputmask({
+  'mask': '999'
+});
+$('#tooltip-about').jTippy({
+  trigger: 'click',
+  theme: 'white',
+  backdrop: 'black',
+  class: 'tooltip-about montserrat text-default font-14',
+  title: 'Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с карты без вашего желания'
+});
+},{}],"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -447,5 +411,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.78032849.js.map
+},{}]},{},["../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/script.js"], null)
+//# sourceMappingURL=/script.d573be0b.js.map
