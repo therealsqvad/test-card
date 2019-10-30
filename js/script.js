@@ -85,7 +85,6 @@ $exp.on('input', function (e) {
       e.target.value = exp.slice(0, 2);
       expValid = false;
     } else {
-//      $cvc.focus();
       expValid = true;
     }
   } else {
@@ -98,7 +97,6 @@ $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
   console.log(e.target.value);
   if (cvc.length === 3) {
-//    $cvc.blur();
     cvcValid = true;
   } else {
     cvcValid = false;

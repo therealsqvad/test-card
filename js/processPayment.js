@@ -5,6 +5,7 @@ var PageMode = "#pageMode#";
 var MaskedPAN = "#maskedPAN#";
 
 var NonceAddition = 0;
+var $message = $("#message");
 
 
 function number_format (number, decimals, dec_point, thousands_sep) {
@@ -33,12 +34,14 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 
 function ShowMessage(message)
 {
-  $("#message").addClass('text-success').html(message);
+  $message.removeClass('text-danger');
+  $message.addClass('text-success').html(message);
 }
 
 function ShowAlertMessage(message)
 {
-  $("#message").html(message);
+  $message.removeClass('text-success');
+  $message.addClass('text-danger').html(message);
 }
 
 $(document).ready(function() {
