@@ -1,0 +1,26 @@
+.btn-pay {
+  color: #fff;
+  background-color: #248ce4;
+  border-color: #248ce4;
+  width: 240px;
+  height: 35px;
+}
+
+.btn-pay:hover {
+  color: #fff;
+  background-color: #177ac5;
+  border-color: #177ac5;
+}
+
+.btn-pay:not(:disabled):not(.disabled):active:focus,
+.btn-pay:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.btn-pay:not(:disabled):not(.disabled):active, .btn-pay:not(:disabled):not(.disabled).active,
+.show > .btn-pay.dropdown-toggle {
+  color: #fff;
+  background-color: #177ac5;
+  border-color: #177ac5;
+}

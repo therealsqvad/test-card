@@ -37,6 +37,7 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage"
         content="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/ms-icon-144x144.png">
+  <link rel="stylesheet" href="js/jTippy-master/jTippy.min.css">
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -111,28 +112,29 @@
           </div>
         
         </div>
-        <div class="load-card-block">
-          <div class="save-card"><span class="save-text">Сохранить карту</span>
-            
-            <input type="checkbox" id="cardTokenization" name="saveCard" value="1">
-            <label for="cardTokenization" class="check">
-              <svg width="18px" height="18px" viewBox="0 0 18 18">
-                <path
-                  d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
-                <polyline points="1 9 7 14 15 4"></polyline>
-              </svg>
-            </label>
-            <button class="tooltip" type="button"></button>
-          </div>
+        
+        <div class="d-flex align-items-center align-self-center mb-3">
+          <span class="text-default font-14">Сохранить карту</span>
+          <input type="checkbox" id="saveCard" name="saveCard" hidden/>
+          <label for="saveCard" class="check">
+            <svg width="18px" height="18px" viewBox="0 0 18 18">
+              <path
+                d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"/>
+              <polyline points="1 9 7 14 15 4"/>
+            </svg>
+          </label>
+          
+          <button
+            id="tooltip-about"
+            type="button"
+            class="tooltip-about ml-2 mt-1"
+          >
+            <img src="img/question.svg" width="16"/>
+          </button>
         </div>
-        <div class="iosHoverMobele">Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь
-          доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с
-          карты без вашего желания
-        </div>
-        <p class="pay-for">#description#</p>
-        <div class="form-group form-group__price">
-          <span class="form-group__label">Сумма к оплате</span>
-          <p class="price">#amount# ₽</p>
+        <div class="d-flex flex-column align-items-center align-self-center">
+          <span class="text-default font-18 montserrat-med">Сумма к оплате</span>
+          <p class="text-default font-36 montserrat-med mb-3">350 000 ₽</p>
         </div>
         <div class=loadingBlock>
           <div class="loadingText">
@@ -157,7 +159,7 @@
           </div>
         </div>
         <div id="message"></div>
-        <button type="button" class="btn btn-blue form__btn" id="payButton">Оплатить</button>
+        <button type="button" class="btn btn-pay align-self-center lh-1 font-16 mb-3" id="payButton">Оплатить</button>
         <p class="oferta">
         
         </p>
@@ -180,6 +182,7 @@
   crossorigin="anonymous"></script>
 <script src="js/inputmask-5/jquery.inputmask.min.js"></script>
 <script src="js/processPayment.js"></script>
+<script src="js/jTippy-master/jTippy.min.js"></script>
 <script src="js/script.js"></script>
 
 

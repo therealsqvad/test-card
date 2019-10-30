@@ -3,6 +3,9 @@
   letter-spacing: 4px;
   font-weight: normal;
 }
+::-webkit-input-placeholder:focus {
+  font-weight: 700;
+}
 :-moz-placeholder {
   font-size: 14px;
   letter-spacing: 4px;

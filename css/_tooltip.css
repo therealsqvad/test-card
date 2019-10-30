@@ -1,7 +1,9 @@
 .tooltip-about {
-  /*width: 100px;*/
   max-width: 320px;
   word-wrap: break-word;
+  border: 0;
+  background: #fff;
+  
 }
 .tooltip-about .jt-title {
   white-space: normal;
