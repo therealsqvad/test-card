@@ -122,16 +122,16 @@ function btnPayStatus() {
   }
 }
 
-//$pan.inputmask({
-//  'mask': '9999 9999 9999 9999'
-//});
-//
-//$exp.inputmask({
-//  'mask': '99/99',
-//});
-//$cvc.inputmask({
-//  'mask': '999',
-//});
+$pan.inputmask('Regex', {
+  regex: '9999-9999-9999-9999'
+});
+
+$exp.inputmask({
+  'mask': '99/99',
+});
+$cvc.inputmask({
+  'mask': '999',
+});
 
 $('#tooltip-about').jTippy({
   trigger: 'click',
