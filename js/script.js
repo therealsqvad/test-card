@@ -122,8 +122,8 @@ function btnPayStatus() {
   }
 }
 
-$pan.inputmask('Regex', {
-  regex: '9999-9999-9999-9999'
+$pan.inputmask({
+  'mask': '9999-9999-9999-9999'
 });
 
 $exp.inputmask({
