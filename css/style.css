@@ -1,14 +1,14 @@
 @import "bootstrap-reboot.min.css";
 @import "bootstrap-grid.min.css";
-@import "_font.css";
-@import "_form.css";
-@import "_placeholder.css";
-@import "_tooltip.css";
+@import "font.css";
+@import "form.css";
+@import "placeholder.css";
+@import "tooltip.css";
 @import "card.css";
-@import "_color.css";
-@import "_border.css";
-@import "_shadow.css";
-@import "_button.css";
+@import "color.css";
+@import "border.css";
+@import "shadow.css";
+@import "button.css";
 
 /* RESET CSS*/
 * {
