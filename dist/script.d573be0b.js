@@ -123,11 +123,14 @@ var $pan = $('#pan'),
     $cvc = $('#cvc'),
     $cardLogo = $('#cardLogo'),
     $errorNumber = $('#errorNumber'),
+    $payButton = $('#payButton'),
     mastercard = [51, 52, 53, 54, 55],
     maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604],
     year = new Date().getFullYear() % 100;
-var numValid = false,
-    expValid = false;
+var payEnable = false,
+    numValid = false,
+    expValid = false,
+    cvcValid = false;
 $pan.on('input', function (event) {
   var number = $(this).val().replace(/\s+/g, ' ');
 
@@ -150,21 +153,29 @@ $pan.on('input', function (event) {
 $pan.on('blur', function (event) {
   var number = $(this).val().replace(/\s+/g, '');
 
-  if (luhnAlgorithm(number) && !$errorNumber.hasClass('d-none')) {
-    $errorNumber.addClass('d-none');
-    console.warn('hide');
+  if (luhnAlgorithm(number)) {
     numValid = true;
-  } else if (!luhnAlgorithm(number) && $errorNumber.hasClass('d-none')) {
-    $errorNumber.removeClass('d-none');
-    console.warn('show');
-    numValid = false;
-  } //  console.log(typeof (number));
-  //  console.warn(luhnAlgorithm($(this).val()));
 
+    if (!$errorNumber.hasClass('d-none')) {
+      $errorNumber.addClass('d-none');
+    }
+  } else {
+    numValid = false;
+
+    if ($errorNumber.hasClass('d-none')) {
+      $errorNumber.removeClass('d-none');
+    }
+  }
+
+  btnPayStatus();
 });
 
 function luhnAlgorithm(digits) {
   var sum = 0;
+
+  if (digits === '') {
+    return false;
+  }
 
   for (var i = 0; i < digits.length; i++) {
     var cardNum = parseInt(digits[i]);
@@ -188,26 +199,36 @@ $exp.on('input', function (e) {
 
   if (exp.length === 1 && !exp.match(/0|1/)) {
     e.target.value = '';
-    console.log(1);
   }
 
   if (exp.length >= 2 && exp.match(/([0][1-9]|[1][0-2])/) === null) {
     e.target.value = exp[0];
-    console.log(3);
   }
 
-  if (exp.length === 5) {
+  if (exp.length === 4) {
     if (parseInt(exp.substr(-2), 10) < year || parseInt(exp.substr(-2), 10) > year + 10) {
-      e.target.value = exp.slice(0, 3);
+      e.target.value = exp.slice(0, 2);
       expValid = false;
     } else {
-      document.getElementById('cvc').focus();
       expValid = true;
     }
+  } else {
+    expValid = false;
   }
 
-  console.log(exp);
+  btnPayStatus();
+});
+$cvc.on('input', function (e) {
+  var cvc = e.target.value.replace(/_/g, '');
   console.log(e.target.value);
+
+  if (cvc.length === 3) {
+    cvcValid = true;
+  } else {
+    cvcValid = false;
+  }
+
+  btnPayStatus();
 });
 
 function detectCard(str, arr) {
@@ -218,6 +239,16 @@ function detectCard(str, arr) {
   }
 
   return false;
+}
+
+function btnPayStatus() {
+  payEnable = numValid && expValid && cvcValid;
+
+  if (payEnable) {
+    $payButton.prop("disabled", false);
+  } else {
+    $payButton.prop("disabled", true);
+  }
 }
 
 $pan.inputmask({
@@ -264,7 +295,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40349" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44105" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
