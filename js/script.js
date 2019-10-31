@@ -129,6 +129,15 @@ $pan.inputmask({
   },
 });
 
+$pan.on('change', function(e) {
+  console.log('change');
+})
+
+$pan.on('paste', function(e) {
+  console.log('paste');
+})
+
+
 $exp.inputmask({
   'mask': '99/99',
 });
