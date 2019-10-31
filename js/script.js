@@ -121,9 +121,14 @@ function btnPayStatus() {
     $payButton.prop("disabled", true);
   }
 }
-
+//
 $pan.inputmask({
-  'mask': '9999-9999-9999-9999'
+  'mask': '9999 9999 9999 9999',
+  onBeforePaste: function (pastedValue, opts) {
+    pastedValue.replace(/(\d)(?=(\d{4})+(\D|$))/g, ' ');
+//    pastedValue = pastedValue.toLowerCase();
+    return pastedValue;
+  },
 });
 
 $exp.inputmask({
