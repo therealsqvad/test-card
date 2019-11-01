@@ -100,6 +100,7 @@ function expValidate(e) {
 $addExp.on('input', (e) => {
   let exp = e.target.value;
 //  alert(JSON.stringify(exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/)));
+  
   if (exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/) !== null) {
     console.log('hello', exp);
     
@@ -111,6 +112,9 @@ $addExp.on('input', (e) => {
 
 $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
+  
+  alert($addExp !== null && $addExp !== undefined);
+  
   console.log(e.target.value);
   if (cvc.length === 3) {
     cvcValid = true;
