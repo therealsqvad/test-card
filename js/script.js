@@ -113,7 +113,7 @@ $addExp.on('input', (e) => {
 $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
   
-  alert($addExp !== null && $addExp !== undefined);
+  alert($addExp.val());
   
   console.log(e.target.value);
   if (cvc.length === 3) {
