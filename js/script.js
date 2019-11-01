@@ -122,15 +122,9 @@ function btnPayStatus() {
   }
 }
 
-//$pan.mask("9999 9999 9999 9999", {placeholder:"_"});
 $pan.payment('formatCardNumber');
-
-//$exp.mask({
-//  'mask': '99/99',
-//});
-//$cvc.inputmask({
-//  'mask': '999',
-//});
+$exp.mask('99/99');
+$cvc.mask('999');
 
 $('#tooltip-about').jTippy({
   trigger: 'click',
