@@ -25,7 +25,7 @@
     "coffee-script": "~1.7",
     "jsdom": "~7.2",
     "mocha": "~1.18",
-    "uglify-js": "~2.4.24",
+    "uglify-js": "~3.6.5",
     "zeptojs": "~1.1"
   }
 }
