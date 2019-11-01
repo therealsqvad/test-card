@@ -71,7 +71,7 @@ function luhnAlgorithm(digits) {
 }
 
 $exp.on('input', function (e) {
-  const exp = e.target.value.replace(/_|\//g, '');
+  const exp = e.target.value.replace(/_|\./g, '');
   
   if ((exp.length === 1) && (!exp.match(/0|1/))) {
     e.target.value = '';
@@ -123,7 +123,7 @@ function btnPayStatus() {
 }
 
 $pan.payment('formatCardNumber');
-$exp.mask('99/99');
+$exp.mask('99.99');
 $cvc.mask('999');
 
 $('#tooltip-about').jTippy({
