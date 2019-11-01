@@ -71,9 +71,12 @@ function luhnAlgorithm(digits) {
   return sum % 10 === 0;
 }
 
-$exp.on('input', function (e) {
-  const exp = e.target.value.replace(/_|\//g, '');
+$exp.on('input', (e) => expValidate(e));
+$exp.on('change', (e) => expValidate(e));
 
+function expValidate(e) {
+  const exp = e.target.value.replace(/_|\//g, '');
+  
   if ((exp.length === 1) && (!exp.match(/0|1/))) {
     e.target.value = '';
   }
@@ -92,13 +95,17 @@ $exp.on('input', function (e) {
     expValid = false;
   }
   btnPayStatus();
-})
+}
 
-$addExp.trigger('change')
-
-
-$addExp.on('input', () => {
-  alert('ok');
+$addExp.on('input', (e) => {
+  let exp = e.target.value;
+  
+  if (exp.match(/([0][1-9]|[1][0-2])\/\d{4}/) !== null) {
+    console.log('hello', exp);
+    $exp.val(exp.slice(0, 2) + '/' + exp.slice(4, 6));
+  }
+  
+  console.log($exp.val());
 });
 
 $cvc.on('input', function (e) {
