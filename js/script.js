@@ -1,5 +1,6 @@
 const $pan = $('#pan'),
   $exp = $('#exp'),
+  $addExp = $('#addExp'),
   $cvc = $('#cvc'),
   $cardLogo = $('#cardLogo'),
   $errorNumber = $('#errorNumber'),
@@ -70,28 +71,35 @@ function luhnAlgorithm(digits) {
   return sum % 10 === 0;
 }
 
-//$exp.on('input', function (e) {
-//  const exp = e.target.value.replace(/_|\//g, '');
-//
-//  if ((exp.length === 1) && (!exp.match(/0|1/))) {
-//    e.target.value = '';
-//  }
-//  if ((exp.length >= 2) && (exp.match(/([0][1-9]|[1][0-2])/) === null)) {
-//    e.target.value = exp[0];
-//  }
-//  if (exp.length === 4) {
-//    if (parseInt(exp.substr(-2), 10) < year
-//      || parseInt(exp.substr(-2), 10) > year + 10) {
-//      e.target.value = exp.slice(0, 2);
-//      expValid = false;
-//    } else {
-//      expValid = true;
-//    }
-//  } else {
-//    expValid = false;
-//  }
-//  btnPayStatus();
-//})
+$exp.on('input', function (e) {
+  const exp = e.target.value.replace(/_|\//g, '');
+
+  if ((exp.length === 1) && (!exp.match(/0|1/))) {
+    e.target.value = '';
+  }
+  if ((exp.length >= 2) && (exp.match(/([0][1-9]|[1][0-2])/) === null)) {
+    e.target.value = exp[0];
+  }
+  if (exp.length === 4) {
+    if (parseInt(exp.substr(-2), 10) < year
+      || parseInt(exp.substr(-2), 10) > year + 10) {
+      e.target.value = exp.slice(0, 2);
+      expValid = false;
+    } else {
+      expValid = true;
+    }
+  } else {
+    expValid = false;
+  }
+  btnPayStatus();
+})
+
+$addExp.trigger('change')
+
+
+$addExp.on('input', () => {
+  alert('ok');
+});
 
 $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
