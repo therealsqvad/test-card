@@ -123,7 +123,7 @@ function btnPayStatus() {
 }
 
 $pan.payment('formatCardNumber');
-//$exp.mask('99/99');
+$exp.mask('99/99');
 $cvc.mask('999');
 
 $('#tooltip-about').jTippy({
@@ -133,4 +133,3 @@ $('#tooltip-about').jTippy({
   class: 'tooltip-about montserrat text-default font-14',
   title: 'Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с карты без вашего желания',
 });
-
