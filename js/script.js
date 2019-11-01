@@ -121,22 +121,18 @@ function btnPayStatus() {
     $payButton.prop("disabled", true);
   }
 }
-//
-$pan.inputmask({
-  'mask': '9999 9999 9999 9999',
-  onBeforePaste: function (pastedValue) {
-    return pastedValue.replace(/(\d)(?=(\d{4})+(\D|$))/g, '$1 ');
-  },
+
+//$pan.inputmask({
+//  'mask': '9999 9999 9999 9999',
+//  onBeforePaste: function (pastedValue) {
+//    return pastedValue.replace(/(\d)(?=(\d{4})+(\D|$))/g, '$1 ');
+//  },
+//});
+
+$pan.mask('9999 9999 9999 9999', {
+  placeholder: "____ ____ ____ ____",
+  selectOnFocus: true,
 });
-
-$pan.on('change', function(e) {
-  console.log('change');
-})
-
-$pan.on('paste', function(e) {
-  console.log('paste');
-})
-
 
 $exp.inputmask({
   'mask': '99/99',
