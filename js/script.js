@@ -131,7 +131,6 @@ function btnPayStatus() {
 
 $pan.mask('9999 9999 9999 9999', {
   placeholder: "____ ____ ____ ____",
-  selectOnFocus: true,
 });
 
 $exp.inputmask({
