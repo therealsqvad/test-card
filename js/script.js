@@ -99,7 +99,7 @@ function expValidate(e) {
 
 $addExp.on('input', (e) => {
   let exp = e.target.value;
-  alert(JSON.stringify(exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/)));
+//  alert(JSON.stringify(exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/)));
   if (exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/) !== null) {
     console.log('hello', exp);
     
