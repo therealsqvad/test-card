@@ -122,18 +122,10 @@ function btnPayStatus() {
   }
 }
 
-//$pan.inputmask({
-//  'mask': '9999 9999 9999 9999',
-//  onBeforePaste: function (pastedValue) {
-//    return pastedValue.replace(/(\d)(?=(\d{4})+(\D|$))/g, '$1 ');
-//  },
-//});
+$pan.mask("9999 9999 9999 9999", {placeholder:"_"});
 
-$pan.mask('9999 9999 9999 9999', {
-  placeholder: "____ ____ ____ ____",
-});
 
-$exp.inputmask({
+$exp.mask({
   'mask': '99/99',
 });
 $cvc.inputmask({
