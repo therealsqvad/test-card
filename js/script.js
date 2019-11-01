@@ -103,7 +103,7 @@ $addExp.on('input', (e) => {
   if (exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/) !== null) {
     console.log('hello', exp);
     
-    $exp.val(exp.slice(0, 2) + '/' + exp.slice(5, 7));
+    $exp.val(exp.slice(0, 2) + '/' + exp.slice(5));
   }
   
   console.log($exp.val());
