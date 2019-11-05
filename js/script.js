@@ -134,8 +134,19 @@ function btnPayStatus() {
   }
 }
 
-if (PageMode === 'cvcOnly') {$pan.mask('**** **** **** 9999'); $pan.val(MaskedPAN); $pan.prop("disabled", true)} else { $pan.payment('formatCardNumber')}
-if (PageMode === 'cvcOnly') {$exp.mask('**/**'); $exp.val('**/**'); $exp.prop("disabled", true)} else { $exp.mask('99/99')}
+if (PageMode === 'cvcOnly') {
+  $pan.mask('**** **** **** 9999');
+  $pan.val(MaskedPAN);
+  $pan.prop("disabled", true);
+  $exp.mask('**/**');
+  $exp.val('**/**');
+  $exp.prop("disabled", true);
+  $("#load-card-block").hide();
+} else {
+  $pan.payment('formatCardNumber');
+  $exp.mask('99/99');
+}
+
 $cvc.mask('999');
 
 $('#tooltip-about').jTippy({
