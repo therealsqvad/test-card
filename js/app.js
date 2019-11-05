@@ -457,7 +457,7 @@ function checkOper(code) {
       || a.substring(0, i) === "6304" || a.substring(0, i) === "6759" || a.substring(0, i) === "6761" || a.substring(0, i) === "6762"
       || a.substring(0, i) === "6763" || a.substring(0, i) === "0604") oper = "РњР°СЌСЃС‚СЂРѕ"
     else if (a.substring(0, i) === "62") oper = "China UnionPay"
-    else if (a.substring(0, i) === "2") oper = "РњРР "
+    else if (a.substring(0, i) === "2") oper = "РњР?Р "
   }
   return oper;
 }
