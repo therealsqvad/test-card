@@ -7,7 +7,7 @@ const $pan = $('#pan'),
   $payButton = $('#payButton'),
   mastercard = [51, 52, 53, 54, 55],
   maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604, 506, 639],
-  mir = [2200, 2201, 2202, 2203, 2204],
+  mir = [2200, 2201, 2202, 2203, 2204, 35],
   year = new Date().getFullYear() % 100;
 
 let payEnable = false,
