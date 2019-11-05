@@ -21,23 +21,9 @@
   $.payment.cards = cards = [
     {
       type: 'maestro',
-      patterns: [5018, 502, 503, 506, 56, 58, 639, 6220, 67],
+      patterns: [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604, 506, 639],
       format: defaultFormat,
       length: [12, 13, 14, 15, 16, 17, 18, 19],
-      cvcLength: [3],
-      luhn: true
-    }, {
-      type: 'forbrugsforeningen',
-      patterns: [600],
-      format: defaultFormat,
-      length: [16],
-      cvcLength: [3],
-      luhn: true
-    }, {
-      type: 'dankort',
-      patterns: [5019],
-      format: defaultFormat,
-      length: [16],
       cvcLength: [3],
       luhn: true
     }, {
@@ -62,34 +48,20 @@
       cvcLength: [3, 4],
       luhn: true
     }, {
-      type: 'dinersclub',
-      patterns: [30, 36, 38, 39],
-      format: /(\d{1,4})(\d{1,6})?(\d{1,4})?/,
-      length: [14],
-      cvcLength: [3],
-      luhn: true
-    }, {
-      type: 'discover',
-      patterns: [60, 64, 65, 622],
-      format: defaultFormat,
-      length: [16],
-      cvcLength: [3],
-      luhn: true
-    }, {
       type: 'unionpay',
       patterns: [62, 88],
       format: defaultFormat,
       length: [16, 17, 18, 19],
       cvcLength: [3],
-      luhn: false
+      luhn: true
     }, {
-      type: 'jcb',
-      patterns: [35],
+      type: 'mir',
+      patterns: [2200, 2201, 2202, 2203, 2204],
       format: defaultFormat,
       length: [16],
       cvcLength: [3],
       luhn: true
-    }
+    },
   ];
 
   cardFromNumber = function(num) {

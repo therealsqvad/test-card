@@ -6,7 +6,8 @@ const $pan = $('#pan'),
   $errorNumber = $('#errorNumber'),
   $payButton = $('#payButton'),
   mastercard = [51, 52, 53, 54, 55],
-  maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604],
+  maestro = [5018, 5020, 5038, 5893, 6304, 6759, 6761, 6762, 6763, 0604, 506, 639],
+  mir = [2200, 2201, 2202, 2203, 2204],
   year = new Date().getFullYear() % 100;
 
 let payEnable = false,
@@ -17,19 +18,21 @@ let payEnable = false,
 $pan.on('input', function (event) {
   let number = $(this).val().replace(/\s+/g, ' ');
   
+  console.log(number);
+  
   if (number.indexOf('4') === 0) {
     $cardLogo.attr('src', './img/card/cc-visa.svg');
-  } else if (number.indexOf('2') === 0) {
+  } else if (detectCard(number, mir)) {
     $cardLogo.attr('src', './img/card/cc-mir.svg');
-  } else if (number.indexOf('62') === 0) {
-    $cardLogo.attr('src', './img/card/cc-unionpay.svg');
   } else if (number.indexOf('34') === 0 || number.indexOf('37') === 0) {
     $cardLogo.attr('src', './img/card/cc-amex.svg');
   } else if (detectCard(number, mastercard)) {
     $cardLogo.attr('src', './img/card/cc-mastercard.svg');
   } else if (detectCard(number, maestro)) {
     $cardLogo.attr('src', './img/card/cc-maestro.svg');
-  } else {
+  } else if (number.indexOf('62') === 0) {
+    $cardLogo.attr('src', './img/card/cc-unionpay.svg');
+  }  else {
     $cardLogo.attr('src', './img/card/default.svg');
   }
 });
@@ -99,11 +102,8 @@ function expValidate(e) {
 
 $addExp.on('input', (e) => {
   let exp = e.target.value;
-//  alert(JSON.stringify(exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/)));
   
   if (exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/) !== null) {
-    console.log('hello', exp);
-    
     $exp.val(exp.slice(0, 2) + '/' + exp.slice(5, 7));
   }
   
@@ -112,6 +112,7 @@ $addExp.on('input', (e) => {
 
 $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
+
   if (cvc.length === 3) {
     cvcValid = true;
   } else {

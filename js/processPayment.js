@@ -26,14 +26,12 @@ function number_format (number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-function ShowMessage(message)
-{
+function ShowMessage(message) {
   $message.removeClass('text-danger');
   $message.addClass('text-success').html(message);
 }
 
-function ShowAlertMessage(message)
-{
+function ShowAlertMessage(message) {
   $message.removeClass('text-success');
   $message.addClass('text-danger').html(message);
 }

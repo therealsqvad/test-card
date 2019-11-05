@@ -509,7 +509,8 @@ input {
 
 @media (max-width: 350px) {
   .shield {
-    font-size: 12px;
+    display: none;
+    text-align: center;
   }
   
   .card__area input, .form__control {
