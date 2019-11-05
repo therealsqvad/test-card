@@ -112,7 +112,7 @@ $addExp.on('input', (e) => {
 
 $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
-  
+
   if (cvc.length === 3) {
     cvcValid = true;
   } else {
@@ -139,8 +139,8 @@ function btnPayStatus() {
   }
 }
 
-$pan.payment('formatCardNumber');
-$exp.mask('99/99');
+if (PageMode === 'cvcOnly') {$pan.mask('**** **** **** 9999'); $pan.val(MaskedPAN); $pan.prop("disabled", true)} else { $pan.payment('formatCardNumber')}
+if (PageMode === 'cvcOnly') {$exp.mask('**/**'); $exp.val('**/**'); $exp.prop("disabled", true)} else { $exp.mask('99/99')}
 $cvc.mask('999');
 
 $('#tooltip-about').jTippy({
