@@ -106,12 +106,17 @@
               <input
                 id="exp"
                 type="tel"
-                name="expdate"
                 class="out-none text-default font-weight-bold border-0 card-text-input shadow-inset-white p-1"
                 style="width: 100px"
                 placeholder="__/__"
-                autocomplete="cc-exp"
               />
+              <input
+                id="addExp"
+                name="expdate"
+                type="tel"
+                autocomplete="cc-exp"
+                class="hidden-expdate"
+              >
             </div>
             <div class="d-flex flex-column">
               <label for="cvc" class="text-default font-14 mb-1 ml-2">Код</label>

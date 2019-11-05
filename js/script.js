@@ -1,5 +1,6 @@
 const $pan = $('#pan'),
   $exp = $('#exp'),
+  $addExp = $('#addExp'),
   $cvc = $('#cvc'),
   $cardLogo = $('#cardLogo'),
   $errorNumber = $('#errorNumber'),
@@ -70,7 +71,10 @@ function luhnAlgorithm(digits) {
   return sum % 10 === 0;
 }
 
-$exp.on('input', function (e) {
+$exp.on('input', (e) => expValidate(e));
+$exp.on('change', (e) => expValidate(e));
+
+function expValidate(e) {
   const exp = e.target.value.replace(/_|\//g, '');
   
   if ((exp.length === 1) && (!exp.match(/0|1/))) {
@@ -91,7 +95,20 @@ $exp.on('input', function (e) {
     expValid = false;
   }
   btnPayStatus();
-})
+}
+
+$addExp.on('input', (e) => {
+  let exp = e.target.value;
+//  alert(JSON.stringify(exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/)));
+  
+  if (exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/) !== null) {
+    console.log('hello', exp);
+    
+    $exp.val(exp.slice(0, 2) + '/' + exp.slice(5, 7));
+  }
+  
+  console.log($exp.val());
+});
 
 $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
@@ -132,4 +149,3 @@ $('#tooltip-about').jTippy({
   class: 'tooltip-about montserrat text-default font-14',
   title: 'Вы можете сохранить эту карту для дальнейших покупок. Продавец не будет иметь доступа к этим данным, а каждый платеж мы будем подтверждать вводом кода. Никто не сможет списать деньги с карты без вашего желания',
 });
-
