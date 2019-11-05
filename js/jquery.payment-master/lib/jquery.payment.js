@@ -61,6 +61,13 @@
       length: [16],
       cvcLength: [3],
       luhn: true
+    }, {
+      type: 'default',
+      patterns: [1, 2, 3, 4, 5, 6, 7],
+      format: defaultFormat,
+      length: [16],
+      cvcLength: [3],
+      luhn: true
     },
   ];
 
