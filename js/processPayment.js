@@ -53,7 +53,7 @@ $("#payButton").click(function() {
     
     default:
       var URL = ClientRootURL + "payment/";
-      var InData = $.base64.encode('{"card":{"pan":"' + $("#pan").val().replace(/\s/g, "") + '","expDate":{"year":"20' + $("#exp").val().split("/")[1] + '","month":"' + parseInt($("#exp").val().split("/")[0], 10) + '"},"cvc2":"' + $("#cvc").val() + '"}' + ($("#saveCard").is(':checked') ? ',"saveCard":1' : '') + '}');
+      var InData = $.base64.encode('{"card":{"pan":"' + $("#pan").val().replace(/\s/g, "") + '","expDate":{"year":"20' + $("#exp").val().split("/")[1] + '","month":"' + parseInt($("#exp").val().split("/")[0], 10) + '"},"cvc2":"' + $("#cvc").val() + '"}' + ($("#cardTokenization").is(':checked') ? ',"cardTokenization":1' : '') + '}');
       break;
   }
   

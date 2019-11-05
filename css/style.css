@@ -986,22 +986,22 @@ input {
   stroke: #3e5569;
 }
 
-#saveCard:checked + .check svg {
+#cardTokenization:checked + .check svg {
   stroke: #3e5569;
 }
 
-#saveCard:checked + .check svg path {
+#cardTokenization:checked + .check svg path {
   stroke-dashoffset: 60;
   transition: all 0.3s linear;
 }
 
-#saveCard:checked + .check svg polyline {
+#cardTokenization:checked + .check svg polyline {
   stroke-dashoffset: 42;
   transition: all 0.2s linear;
   transition-delay: 0.15s;
 }
 
-#saveCard {
+#cardTokenization {
   display: none;
 }
 
