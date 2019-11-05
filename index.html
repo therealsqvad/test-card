@@ -6,37 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="format-detection" content="telephone=no">
   <title>Invoice - Оплата</title>
-  <link rel="apple-touch-icon" sizes="57x57"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/favicon-16x16.png">
-  <link rel="manifest"
-        href="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/manifest.json">
+  <link rel="apple-touch-icon" sizes="57x57" href="#pageRootURL#img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="#pageRootURL#img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="#pageRootURL#img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="#pageRootURL#img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="#pageRootURL#img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="#pageRootURL#img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="#pageRootURL#img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="#pageRootURL#img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="#pageRootURL#img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="#pageRootURL#img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="#pageRootURL#img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="#pageRootURL#img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="#pageRootURL#img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="#pageRootURL#img/favicon/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage"
-        content="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/favicon/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="#pageRootURL#img/favicon/ms-icon-144x144.png">
   <link rel="stylesheet" href="js/jTippy-master/jTippy.min.css">
   <link rel="stylesheet" href="css/style.css">
   <script>
@@ -45,6 +30,7 @@
     var SessionID = "#sessionID#";
     var PageMode = "#pageMode#";
     var MaskedPAN = "#maskedPAN#";
+    var pageRoot = "#pageRootURL#";
 </script>
 </head>
 <body>
@@ -53,10 +39,10 @@
     <div class="wrapper__head">
       <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between w-100">
         <a href="/">
-          <img src="./img/logo.png" width="105" alt="logo">
+          <img src="#pageRootURL#img/logo.png" width="105" alt="logo">
         </a>
         <div class="d-flex align-items-center">
-          <img src="./img/shield.svg" alt="shield" width="20" class="shield"/>
+          <img src="#pageRootURL#img/shield.svg" alt="shield" width="20" class="shield"/>
           <span class="text-payment font-13 text-gray-1">
             The first single secure payment account
           </span>
@@ -67,7 +53,7 @@
       <form class="form d-flex flex-column">
         <div class="card-form d-flex flex-column position-relative">
           <div class="d-flex justify-content-end">
-            <img id="cardLogo" src=img/card/default.svg height="42" width="80"/>
+            <img id="cardLogo" src="#pageRootURL#img/card/default.svg" height="42" width="80"/>
           </div>
           <label for="pan" class="text-default font-14 mb-1">Номер карты</label>
           <div class="position-relative">
@@ -137,19 +123,19 @@
             type="submit"
             class="tooltip-about ml-2 mt-1"
           >
-            <img src="img/question.svg" width="16"/>
+            <img src="#pageRootURL#img/question.svg" width="16"/>
           </button>
         </div>
         <div class="d-flex flex-column align-items-center align-self-center">
           <span class="text-default font-18 montserrat-med">Сумма к оплате</span>
-          <p class="text-default font-36 montserrat-med mb-3">350 000 ₽</p>
+          <p class="text-default font-36 montserrat-med mb-3">#amount# ₽</p>
         </div>
         <button type="button" class="btn btn-pay align-self-center lh-1 font-16 mb-3" id="payButton">Оплатить</button>
         <div id="message"></div>
       </form>
     </div>
   </div>
-  <img src="https://api2.api8pc.ru/8bb147f89c1023ce0cb0391fdbe7faa37cb2fb0e/html/img/logo%202.svg"
+  <img src="#pageRootURL#img/logo%202.svg"
        class="security-logos" alt="">
 </div>
 
