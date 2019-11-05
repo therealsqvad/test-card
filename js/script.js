@@ -17,9 +17,6 @@ let payEnable = false,
 
 $pan.on('input', function (event) {
   let number = $(this).val().replace(/\s+/g, ' ');
-  
-  console.log(number);
-  
   if (number.indexOf('4') === 0) {
     $cardLogo.attr('src', './img/card/cc-visa.svg');
   } else if (detectCard(number, mir)) {
@@ -106,13 +103,11 @@ $addExp.on('input', (e) => {
   if (exp.match(/([0][1-9]|[1][0-2])(\/|\.)\d{4}/) !== null) {
     $exp.val(exp.slice(0, 2) + '/' + exp.slice(5, 7));
   }
-  
-  console.log($exp.val());
 });
 
 $cvc.on('input', function (e) {
   const cvc = e.target.value.replace(/_/g, '');
-  
+
   if (cvc.length === 3) {
     cvcValid = true;
   } else {
@@ -139,8 +134,8 @@ function btnPayStatus() {
   }
 }
 
-$pan.payment('formatCardNumber');
-$exp.mask('99/99');
+if (PageMode === 'cvcOnly') {$pan.mask('**** **** **** 9999'); $pan.val(MaskedPAN); $pan.prop("disabled", true)} else { $pan.payment('formatCardNumber')}
+if (PageMode === 'cvcOnly') {$exp.mask('**/**'); $exp.val('**/**'); $exp.prop("disabled", true)} else { $exp.mask('99/99')}
 $cvc.mask('999');
 
 $('#tooltip-about').jTippy({

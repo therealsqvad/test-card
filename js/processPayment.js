@@ -1,9 +1,3 @@
-var ClientRootURL = "#clientRootURL#";
-var Nonce = "#nonce#";
-var SessionID = "#sessionID#";
-var PageMode = "#pageMode#";
-var MaskedPAN = "#maskedPAN#";
-
 var NonceAddition = 0;
 var $message = $("#message");
 
